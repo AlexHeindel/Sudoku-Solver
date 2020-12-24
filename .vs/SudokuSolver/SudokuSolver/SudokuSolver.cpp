@@ -6,6 +6,7 @@ Alex Heindel
 #include <iostream>
 #include <fstream>
 #include <cctype>
+#include <string>
 
 using namespace std;
 
@@ -32,6 +33,11 @@ int main()
 			//FIXME: Add args
 			error_check = file_input();
 			input_loop = false;
+
+			if (error_check == 1)
+			{
+				return 1;
+			}
 		}
 		else if (input_choice == 'm')
 		{
@@ -45,8 +51,7 @@ int main()
 			cin >> input_choice;
 		}
 	}
-	cout << "Out" << endl;
-
+	
 	output_array(num_array);
 
 	return 0;
@@ -54,7 +59,25 @@ int main()
 
 int file_input()
 {
-	//return 1 if files do not open
+	char filename[30];
+	ifstream fin;
+
+	cout << "Input filename of txt file with puzzle: ";
+	cin.getline (filename, 31);
+
+	fin.open(filename);
+
+	//Test if file opens
+    //return 1 if file did not open
+	if (!fin)
+	{
+		cout << "\nFile did not open" << endl;
+		fin.close();
+
+		return 1;
+	}
+
+	fin.close();
 	return 0;
 }
 
@@ -74,7 +97,6 @@ void output_array(int array[][9])
 	{
 		for (j = 0; j < 9; ++j)
 		{
-			//FIXME: change to output in file
 			cout << array[i][j] << " ";
 		}
 		cout << endl;
