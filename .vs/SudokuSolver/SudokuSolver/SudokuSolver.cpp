@@ -6,12 +6,12 @@ Alex Heindel
 #include <iostream>
 #include <fstream>
 #include <cctype>
-#include <string>
+#include <cstring>
 
 using namespace std;
 
-int file_input();
-void manual_input();
+int file_input(int num_array[][9], ifstream& fin);
+void manual_input(int num_array[][9]);
 void output_array(int array[][9]);
 
 int main()
@@ -20,6 +20,7 @@ int main()
 	char input_choice;
 	int error_check;
 	bool input_loop = true;
+	ifstream fin;
 	
 	cout << "Do you want manual input or file input (M or F): ";
 
@@ -31,7 +32,7 @@ int main()
 		if (input_choice == 'f')
 		{
 			//FIXME: Add args
-			error_check = file_input();
+			error_check = file_input(num_array, fin);
 			input_loop = false;
 
 			if (error_check == 1)
@@ -42,7 +43,7 @@ int main()
 		else if (input_choice == 'm')
 		{
 			//FIXME: add args
-			manual_input();
+			manual_input(num_array);
 			input_loop = false;
 		}
 		else
@@ -57,19 +58,20 @@ int main()
 	return 0;
 }
 
-int file_input()
+int file_input(int num_array[][9], ifstream& fin)
 {
-	char filename[30];
-	ifstream fin;
+	char filename[31];
+	int temp_array[9];
 
 	cout << "Input filename of txt file with puzzle: ";
-	cin.getline (filename, 31);
+	//cin >> filename;
 
-	fin.open(filename);
+	fin.open("Sudoku1.txt");
+	
 
 	//Test if file opens
     //return 1 if file did not open
-	if (!fin)
+	if (!fin.is_open())
 	{
 		cout << "\nFile did not open" << endl;
 		fin.close();
@@ -81,8 +83,25 @@ int file_input()
 	return 0;
 }
 
-void manual_input()
+void manual_input(int num_array[][9])
 {
+	int i;
+	int j;
+	int temp_input;
+
+	cout << "Enter all values of the puzzle (put 0 for numbers that need to be "
+		"solved)" << endl;
+
+	for (i = 0; i < 9; ++i)
+	{
+		for (j = 0; j < 9; ++j)
+		{
+			cout << i+1 << "x" << j+1 << ": ";
+			cin >> temp_input;
+
+			num_array[i][j] = temp_input;
+		}
+	}
 
 	return;
 }

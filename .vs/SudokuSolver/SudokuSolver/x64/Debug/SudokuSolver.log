@@ -1,2 +1,4 @@
 ﻿  SudokuSolver.cpp
+C:\Users\ajhei\OneDrive\Documents\Coding Projects\Sudoku Solver\.vs\SudokuSolver\SudokuSolver\SudokuSolver.cpp(63,7): warning C4101: 'filename': unreferenced local variable
+C:\Users\ajhei\OneDrive\Documents\Coding Projects\Sudoku Solver\.vs\SudokuSolver\SudokuSolver\SudokuSolver.cpp(64,6): warning C4101: 'temp_array': unreferenced local variable
   SudokuSolver.vcxproj -> C:\Users\ajhei\OneDrive\Documents\Coding Projects\Sudoku Solver\.vs\SudokuSolver\x64\Debug\SudokuSolver.exe
